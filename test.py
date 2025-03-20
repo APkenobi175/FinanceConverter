@@ -5,6 +5,10 @@ from datetime import datetime
 from openpyxl import load_workbook
 
 
+#TODO:
+#A lot left to do, but basic functionality exists
+#Play around with TKinter to make a GUI?
+
 def categorize_expenses(converted_file, categorized_file):
     # Define valid categories and their corresponding spreadsheet sections
     category_ranges = {
@@ -24,12 +28,12 @@ def categorize_expenses(converted_file, categorized_file):
     }
 
     # Load the converted expenses spreadsheet
-    df = pd.read_excel(converted_file)
+    df = pd.read_excel(standardFile)
 
-    if os.path.exists(categorized_file):
-        wb = load_workbook(categorized_file)
+    if os.path.exists(standardFile):
+        wb = load_workbook(standardFile)
     else:
-        print("Error: Categorized spreadsheet does not exist.")
+        print("Error: Standard spreadsheet does not exist.")
         sys.exit(1)
 
     while not df.empty:
@@ -106,6 +110,6 @@ if __name__ == "__main__":
         print("Usage: python script.py <converted_expenses.xlsx> <categorized_expenses.xlsx>")
         sys.exit(1)
 
-    converted_expenses_file = sys.argv[1]
-    categorized_expenses_file = sys.argv[2]
-    categorize_expenses(converted_expenses_file, categorized_expenses_file)
+    standardFile = sys.argv[1]
+    expencesFile = sys.argv[2]
+    categorize_expenses(standardFile, expencesFile)
